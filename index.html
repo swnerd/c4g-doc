@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="User's Guide for Conductor for Gluent">
+        <meta name="author" content="Paul Elbow">
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>Conductor for Gluent User's Guide</title>
+    <link href="css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+    <link href="css/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/jquery-1.10.2.min.js" defer></script>
+    <script src="js/bootstrap-3.3.7.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href=".">Conductor for Gluent User's Guide</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#login">Login</a></li>
+        <li class="main "><a href="#site">Site</a></li>
+            <li><a href="#site-home-page">Site Home Page</a></li>
+            <li><a href="#site-level-offload-parameters">Site Level Offload Parameters</a></li>
+            <li><a href="#site-level-present-parameters">Site Level Present Parameters</a></li>
+            <li><a href="#site-level-notifications-options">Site Level Notifications Options</a></li>
+            <li><a href="#site-level-application-defaults">Site Level Application Defaults</a></li>
+        <li class="main "><a href="#database">Database</a></li>
+            <li><a href="#database-home-page">Database Home Page</a></li>
+            <li><a href="#addedit-database">Add/Edit Database</a></li>
+            <li><a href="#db-level-offload-parameters">DB Level Offload Parameters</a></li>
+            <li><a href="#db-level-present-parameters">DB Level Present Parameters</a></li>
+            <li><a href="#db-level-notifications-options">DB Level Notifications Options</a></li>
+        <li class="main "><a href="#tables">Tables</a></li>
+            <li><a href="#candidate-selection-wizard">Candidate Selection Wizard</a></li>
+            <li><a href="#table-review">Table Review</a></li>
+        <li class="main "><a href="#jobs">Jobs</a></li>
+            <li><a href="#job-maintenance-main-screen">Job Maintenance Main Screen</a></li>
+            <li><a href="#add-job-wizard">Add Job Wizard</a></li>
+        <li class="main "><a href="#jobs-future-calendar">Jobs - Future Calendar</a></li>
+        <li class="main "><a href="#dashboard">Dashboard</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<p>Introduction</p>
+<p>Conductor for Gluent is a application to help manage Gluent offloads. The Gluent software works on a per database basis. Conductor has an additional unit above a database called a site. A particular installation of Conductor will have one site with one or more databases to manage. </p>
+<h1 id="login">Login</h1>
+<p>Enter the Conductor for Gluent Apex URL into your browser. The URL will be something of the form:</p>
+<pre><code>http://{hostname}:{port}/apex/f?p=100
+</code></pre>
+<p>Once the Conductor for Gluent login form is available.
+<img src="/img/s-00-a-login.png" alt="Login Screen" style="width:500px;height:300px;"><p>
+Enter your username and password for Conductor for Gluent.</p>
+<h1 id="site">Site</h1>
+<p>For Conductor, a site is made up of multiple databases.</p>
+<h2 id="site-home-page">Site Home Page</h2>
+<p><img src="/img/s-01-a-sitehome.png" alt="Site Home Screen" style="width:500px;height:300px;"><p>
+From the site home, you can manage site level options:</p>
+<ul>
+<li>Default Offload Parameters</li>
+<li>Default Present Parameters</li>
+<li>Site Level Notification Options</li>
+<li>Application Defaults</li>
+</ul>
+<p>Besides managing site level options, you can choose a database to manage. </p>
+<h2 id="site-level-offload-parameters">Site Level Offload Parameters</h2>
+<p><img src="/img/s-02-a-siteoffload.png" alt="Site Level Offload Screen" style="width:500px;height:300px;"><p>
+Parameters listed here will be used for every offload command executed across all the databases. Any common or offload type parameter can be added; however, there are few parameters that you would want to apply to all of your offloads. The only example that I have come across was the use of the parameter "--count-star-expression".</p>
+<h2 id="site-level-present-parameters">Site Level Present Parameters</h2>
+<p><img src="/img/s-03-a-sitepresent.png" alt="Site Level Present Screen" style="width:500px;height:300px;"><p>
+Parameters listed here will be used for every present command across all the databases. Any common or present type parameter can be added; however, there are few parameters that you would want to apply to all of your present commands.</p>
+<h2 id="site-level-notifications-options">Site Level Notifications Options</h2>
+<p><img src="/img/s-04-a-sitenotifications.png" alt="Site Level Notifications Screen" style="width:500px;height:300px;"><p>
+The implementation of notifications is di"erent than that of parameters. For notifications, the job notifications override the database notifications which override the site notifications. Values entered at the site level will be used when there are no notifications at the database level and at the job level. Notifications are sent at the following points of a job:</p>
+<ul>
+<li>When Job Begins</li>
+<li>When Job Succeeds</li>
+<li>When Job has an Error</li>
+</ul>
+<p>Notifications can be enabled and disabled.</p>
+<h2 id="site-level-application-defaults">Site Level Application Defaults</h2>
+<p><img src="/img/s-05-a-appparms.png" alt="Site Level Application Parameters Screen" style="width:500px;height:300px;"><p>
+The application defaults are parameters that a"ect the way the Conductor for Gluent functions. Here is a list of the parameters and how they work:</p>
+<ul>
+<li>JOB_LAUNCH_INTERVAL – Controls the granularity of the drop down for minutes in the job scheduler. If set to 1, you can specify any minute of the hour (0-59). If you specify 15, you can specify 0, 15, 30, 45. </li>
+<li>OFFLOAD_DROP_RATIO – Controls the default value for the DROP_THRESHOLD on tables. The value in this field will be multiplied with the OFFLOAD_THRESHOLD to determine the default for the DROP_THRESHOLD. </li>
+<li>CREATE_HADOOP_DB – Controls whether the parameter –create-hadoop-db will be included on offload commands. If the hadoop cluster allows the gluent user to create databases, then it should be set to YES. If the hadoop cluster does not allow the gluent user to create databases, then set to NO. </li>
+<li>OFFLOAD_DROP_ACTION – This is the site-wide default for whether an offload job step should attempt to drop tables after offload. It can be over-ridden at the table level.</li>
+</ul>
+<h1 id="database">Database</h1>
+<h2 id="database-home-page">Database Home Page</h2>
+<p>After clicking on a database on the Site Home, you will go to the database home page for that particular database.</p>
+<p><img src="/img/s-11-a-dbhome.png" alt="Database Home Screen" style="width:500px;height:300px;"><p></p>
+<p>It shows some summary information about the database:</p>
+<ul>
+<li>Advisor Candidates – # of tables in the advisor report that have not been selected for offload.</li>
+<li>Select Tables – # of tables that have been selected as candidates for offload.</li>
+<li>Total Jobs – # of jobs that have been created.</li>
+<li>Running Jobs – # of jobs currently running.</li>
+<li>Successful Jobs – # of jobs that completed successfully.</li>
+<li>Jobs in Error State – # of jobs where an error has occurred.</li>
+</ul>
+<p>From this page, the menu options expand to include access to:</p>
+<ul>
+<li>Dashbosrd</li>
+<li>Job Maintenance</li>
+<li>Table Review</li>
+<li>Candidate Selection</li>
+<li>Screen to Edit Database Details Screens to set offload, present and notification parameters at the database level</li>
+</ul>
+<h2 id="addedit-database">Add/Edit Database</h2>
+<p><img src="/img/s-10-a-adddb1.png" alt="Add Database Screen" style="width:500px;height:300px;"><p>
+The database name, description and connection method can be specified on this screen. Then press Add button.
+<img src="/img/s-10-b-adddb2.png" alt="Add Database Screen" style="width:500px;height:300px;"><p>
+To update the database link information (if that is being used), is done by pressing on the DB Link Wizard button.</p>
+<h3 id="db-link-wizard-step-1">DB Link Wizard – Step 1</h3>
+<p><img src="/img/s-10-c-dblink1.png" alt="DB Link Wizard Step 1 Screen" style="width:500px;height:300px;"><p>
+Enter the host name, port, service name, and password. Press Next to create the database link.</p>
+<h3 id="db-link-wizard-step-2">DB Link Wizard – Step 2</h3>
+<p><img src="/img/s-10-d-dblink2.png" alt="DB Link Wizard Step 2 Screen" style="width:500px;height:300px;"><p>
+Press Test DB Link to verify that the database link is correct. Press Finish if the test is successful. Press the left arrow to go back and correct any of the database link information.</p>
+<h2 id="db-level-offload-parameters">DB Level Offload Parameters</h2>
+<p><img src="/img/s-14-a-dboffload.png" alt="DB Level Offload Parameters Screen" style="width:500px;height:300px;"><p>
+Parameters listed here will be used for every offload command executed for this database. Any common or offload type parameter can be added; however, there are few parameters that you would want to apply to all of your database offloads.</p>
+<h2 id="db-level-present-parameters">DB Level Present Parameters</h2>
+<p><img src="/img/s-15-a-dbpresent.png" alt="DB Level Present Parameters Screen" style="width:500px;height:300px;"><p>
+Parameters listed here will be used for every present command executed for this database. Any common or present type parameter can be added; however, there are few parameters that you would want to apply to all of your database present commands.</p>
+<h2 id="db-level-notifications-options">DB Level Notifications Options</h2>
+<p><img src="/img/s-16-a-dbnotifications.png" alt="DB Level Notifications Screen" style="width:500px;height:300px;"><p>
+The implementation of notifications is di"erent than that of parameters. For notifications, the job notifications override the database notifications which override the site notifications. Values entered at the database level will be used when there are no notifications at the job level. Notifications are sent at the following points of a job:</p>
+<ul>
+<li>When Job Begins </li>
+<li>When Job Succeeds </li>
+<li>When Job has an Error</li>
+</ul>
+<p>Notifications can be enabled and disabled.</p>
+<h1 id="tables">Tables</h1>
+<h2 id="candidate-selection-wizard">Candidate Selection Wizard</h2>
+<p><img src="/img/s-18-1-candidateselection.png" alt="Candidate Selection Wizard Step 1 Screen" style="width:500px;height:300px;"><p>
+<u>Step 1 – Select an Advisor Output File</u><p>
+Select a file or if this is your second time through, you can use the existing file. Multiple files can be uploaded if a new advisor report CSV is obtained. Press Next to continue.</p>
+<p><img src="/img/s-18-2-candidateselection.png" alt="Candidate Selection Wizard Step 2 Screen" style="width:500px;height:300px;"><p>
+<u>Step 2 – Select Tables</u><p>
+Select one or more tables that you want to o!oad. Press Next to continue.</p>
+<p><img src="/img/s-18-3-candidateselection.png" alt="Candidate Selection Wizard Step 3 Screen" style="width:500px;height:300px;"><p>
+<u>Step 3 – Table Thresholds</u><p>
+The default o!oad threshold will be determined from the Advisor report. The drop threshold default will be calculated using the application parameter OFFLOAD_DROP_RATIO * o!oad threshold. Either threshold may be updated if desired. Press Next to continue.</p>
+<p><img src="/img/s-18-4-candidateselection.png" alt="Candidate Selection Wizard Step 4 Screen" style="width:500px;height:300px;"><p>
+<u>Step 4 – Partition Details</u><p>
+If a database link is in use, then the partition details will be automatically loaded from the database into the repository. If no connection is available, the partition details will need to be entered manually. Additionally, a column mask can be selected for numbers that represent dates. Press Finish to complete the wizard.</p>
+<h2 id="table-review">Table Review</h2>
+<p><img src="/img/s-17-a-tablereview.png" alt="Table Review Screen" style="width:500px;height:300px;"><p>
+The table review screen allows you to view information about the tables that have been selected to offload. </p>
+<p>For All tables, you can:</p>
+<ul>
+<li>Update table level offload parameters</li>
+<li>Review the Oracle Offload Datasets</li>
+<li>Review the Hadoop Offload Datasets</li>
+</ul>
+<p>Additionally, for partitioned tables, you can:</p>
+<ul>
+<li>update the partition details</li>
+<li>update the offload threshold</li>
+<li>update the drop threshold</li>
+</ul>
+<h1 id="jobs">Jobs</h1>
+<h2 id="job-maintenance-main-screen">Job Maintenance Main Screen</h2>
+<p><img src="/img/s-19-a-jobshome.png" alt="Jobs Home Screen" style="width:500px;height:300px;"><p>
+The main screen for job maintenance contains cards, each with a job on it. Jobs can be selected by clicking on the card. Clicking on the current card allows the editing of details about the job. The job steps are editable in this screen. The Job Add Wizard and calendar view are available by pressing the corresponding buttons.</p>
+<h2 id="add-job-wizard">Add Job Wizard</h2>
+<p><img src="/img/s-19-c-jobwizard1.png" alt="Jobs Wizard Step 1 Screen" style="width:500px;height:300px;"><p>
+<u>Step 1: Job Name and Type</u>
+The job name can be any alpha-numeric characters. The job description is a free form field. The job type is going to be Normal most of the time. Press Next to continue.</p>
+<p>Note: A rare case calls for a Generate job type, when there are duplicate copies of tables that need to be o!oaded in multiple schemas. An example of this would be if a company had a schema per client with the same tables under each schema. A Generate job does not have defined steps. This job type will be covered in a separate section.</p>
+<p><img src="/img/s-19-d-jobwizard2.png" alt="Jobs Wizard Step 2 Screen" style="width:500px;height:300px;"><p>
+<u>Step 2: Job Steps</u>
+Select the step type. Then select the table for the step. Select if the step is enabled or disabled. All steps also have a step comment. Other fields will depend on the step type. Press Next to continue.</p>
+<p><img src="/img/s-19-e-jobwizard3.png" alt="Jobs Wizard Step 3 Screen" style="width:500px;height:300px;"><p>
+<u>Step 3: Job Schedule</u>
+Jobs can be scheduled on a Monthly, Weekly, Daily, or Hourly basis. With each, you must select the appropriate details:</p>
+<ul>
+<li>Monthly – day of the month (1-28), hour and minute</li>
+<li>Weekly – day of the week, hour and minute</li>
+<li>Daily – hour and minute Hourly – minute</li>
+</ul>
+<p>Only jobs with complete information can be enabled.</p>
+<h1 id="jobs-future-calendar">Jobs - Future Calendar</h1>
+<p><img src="/img/s-19-b-jobcalendar.png" alt="Jobs Future Calendar Screen" style="width:500px;height:300px;"><p>
+Based on the job scheduling information that has been entered, you can view when jobs will run to help see when their might be conflicts with a maintenance outage or too many jobs running at once.</p>
+<h1 id="dashboard">Dashboard</h1>
+<p>The dashboard allow for monitoring of running jobs and shows some statistics on offloaded tables.</p>
+<p><u>Job States</u></p>
+<p>The donut graph shows a summary by state of the jobs. The state pieces can be clicked on to drilldown into the details.</p>
+<p><u>Recent Jobs</u></p>
+<p>The 10 most recent jobs. Drilldown to the Current Run of the Job, by clicking on theID. Also, the job name can be selected to drilldown to the job details.</p>
+<p><u>Bytes Comparison</u></p>
+<p>Bytes used in Impala versus the bytes used in Oracle</p>
+<p><u>Space Recovery</u></p>
+<p>In orange is the amount of space that could be recovered if data was truncated/dropped from the offload partitions. In red, we have the amount of data that was truncated/dropped from oracle after offload.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>© Copyright 2020</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.0.4
+Build Date UTC : 2020-02-26 00:24:56
+-->
