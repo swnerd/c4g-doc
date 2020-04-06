@@ -51,6 +51,9 @@
                                 <a href=".">User's Guide</a>
                             </li>
                             <li >
+                                <a href="installation/">Installation</a>
+                            </li>
+                            <li >
                                 <a href="relnotes/">Release Notes</a>
                             </li>
                         </ul>
@@ -67,7 +70,7 @@
                                 </a>
                             </li>
                             <li >
-                                <a rel="prev" href="relnotes/">
+                                <a rel="prev" href="installation/">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -117,14 +120,26 @@ Once the Conductor for Gluent login form is available, then enter your username 
 <p>For Conductor, a site is made up of multiple databases.</p>
 <h2 id="site-home-page">Site Home Page</h2>
 <p><img src="img/s-01-a-sitehome.png" alt="Site Home Screen" style="width:800px;height:475px;"><p>
-From the site home, you can manage site level options:</p>
+From the site home:</p>
+<ol>
+<li>You can manage site level options:</li>
 <ul>
 <li>Default Offload Parameters</li>
 <li>Default Present Parameters</li>
 <li>Site Level Notification Options</li>
 <li>Application Defaults</li>
 </ul>
-<p>Besides managing site level options, you can choose a database to manage. </p>
+<li>Review metrics at the site level:</li>
+<ul>
+<li>Job Metrics</li>
+<li>Amount of Data Offloaded</li>
+<li>Amount of Space that hasn't been selected from the Gluent Advisor Report</li>
+</ul>
+<li>Add a New Database - Click on the <i>Add New</i> card from the list.</li>
+<li>Select a Database to Manage - Click on one of the database cards, to manage it's jobs and tables.</li>
+<li>Edit the details of a database - Click on the <i>Edit</i> Link of a database to change it's description, icon color, database link information, etc.</li>
+</ol>
+
 <h2 id="site-level-offload-parameters">Site Level Offload Parameters</h2>
 <p><img src="img/s-02-a-siteoffload.png" alt="Site Level Offload Screen" style="width:800px;height:475px;"><p>
 Parameters listed here will be used for every offload command executed across all the databases. Any common or offload type parameter can be added; however, there are few parameters that you would want to apply to all of your offloads. The only example that I have come across was the use of the parameter "--count-star-expression".</p>
@@ -147,13 +162,19 @@ The application defaults are parameters that affect the way the Conductor for Gl
 <li>JOB_LAUNCH_INTERVAL – Controls the granularity of the drop down for minutes in the job scheduler. If set to 1, you can specify any minute of the hour (0-59). If you specify 15, you can specify 0, 15, 30, 45. </li>
 <li>OFFLOAD_DROP_RATIO – Controls the default value for the DROP_THRESHOLD on tables. The value in this field will be multiplied with the OFFLOAD_THRESHOLD to determine the default for the DROP_THRESHOLD. </li>
 <li>CREATE_HADOOP_DB – Controls whether the parameter –create-hadoop-db will be included on offload commands. If the Hadoop cluster allows the gluent user to create databases, then it should be set to YES. If the Hadoop cluster does not allow the gluent user to create databases, then set to NO. </li>
-<li>OFFLOAD_DROP_ACTION – This is the site-wide default for whether an offload job step should attempt to drop tables after offload. It can be over-ridden at the table level.</li>
+<li>OFFLOAD_DROP_ACTION – This is the site-wide default for whether an offload job step should attempt to
+<ul>
+<li>GENERATE : Generate a script to drop the offloaded partitions after an offload is completed based on Drop Threshold.</li>
+<li>AUTO     : Drop the offloaded partitions after a table is offload based on Drop Threshold.</li>
+<li>MANUAL   : Do Nothing after offload is completed.</li>
+</ul>
+The OFFLOAD_DROP_ACTION can be over-ridden at the table level.</li>
 </ul>
 <h1 id="database">Database</h1>
 <h2 id="database-home-page">Database Home Page</h2>
 <p>After clicking on a database on the Site Home, you will go to the database home page for that particular database.</p>
 <p><img src="img/s-11-a-dbhome.png" alt="Database Home Screen" style="width:800px;height:475px;"><p></p>
-<p>It shows some summary information about the database:</p>
+<p>At the top of the screen it shows some summary information about the database:</p>
 <ul>
 <li>Advisor Candidates – # of tables in the advisor report that have not been selected for offload.</li>
 <li>Select Tables – # of tables that have been selected as candidates for offload.</li>
@@ -162,13 +183,20 @@ The application defaults are parameters that affect the way the Conductor for Gl
 <li>Successful Jobs – # of jobs that completed successfully.</li>
 <li>Jobs in Error State – # of jobs where an error has occurred.</li>
 </ul>
+<p>Below you will find metrics at the database level for the selected database:
+<ul>
+<li>Job Metrics</li>
+<li>Amount of Data Offloaded</li>
+<li>Amount of Space that hasn't been selected from the Gluent Advisor Report</li>
+</ul></p>
 <p>From this page, the menu options expand to include access to:</p>
 <ul>
 <li>Dashboard</li>
 <li>Job Maintenance</li>
 <li>Table Review</li>
 <li>Candidate Selection</li>
-<li>Screen to Edit Database Details Screens to set offload, present and notification parameters at the database level</li>
+<li>Screen to Edit Database Details</li>
+<li>Screens to set offload, present and notification parameters at the database level</li>
 </ul>
 <h2 id="addedit-database">Add/Edit Database</h2>
 <p><img src="img/s-10-a-adddb1.png" alt="Add Database Screen" style="width:800px;height:475px;"><p>
@@ -209,7 +237,7 @@ Select one or more tables that you want to offload. Press Next to continue.</p>
 The default offload threshold will be determined from the Advisor report. The drop threshold default will be calculated using the application parameter OFFLOAD_DROP_RATIO * offload threshold. Either threshold may be updated if desired. Press Next to continue.</p>
 <p><img src="img/s-18-4-candidateselection.png" alt="Candidate Selection Wizard Step 4 Screen" style="width:800px;height:475px;"><p>
 <u>Step 4 – Partition Details</u><p>
-If a database link is in use, then the partition details will be automatically loaded from the database into the repository. If no connection is available, the partition details will need to be entered manually. Additionally, a column mask can be selected for numbers that represent dates. Press Finish to complete the wizard.</p>
+If a database link is in use, then the partition details will be automatically loaded from the database into the repository. If no connection is available, the partition details will need to be entered manually. Additionally, a column mask can be selected for numbers or strings that represent dates. Press Finish to complete the wizard.</p>
 <h2 id="table-review">Table Review</h2>
 <p><img src="img/s-17-a-tablereview.png" alt="Table Review Screen" style="width:800px;height:475px;"><p>
 The table review screen allows you to view information about the tables that have been selected to offload. </p>
@@ -343,5 +371,5 @@ The dashboard allows for monitoring of running jobs and shows some statistics on
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-03-20 02:17:03
+Build Date UTC : 2020-04-06 18:03:39
 -->
