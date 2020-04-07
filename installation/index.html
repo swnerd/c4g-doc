@@ -90,12 +90,14 @@
             <li><a href="#configuration-file-setup">Configuration File Setup</a></li>
             <li><a href="#user-setup-in-local-database-for-central-repository-mode">User Setup in Local Database for Central Repository Mode</a></li>
             <li><a href="#tns-setup">TNS Setup</a></li>
+            <li><a href="#crontab-setup">Crontab Setup</a></li>
         <li class="main "><a href="#front-end-installation">Front End Installation</a></li>
             <li><a href="#prerequisites_1">Prerequisites</a></li>
-            <li><a href="#apex-182-setup">Apex 18.2 Setup</a></li>
+            <li><a href="#apex-192-setup">Apex 19.2 Setup</a></li>
             <li><a href="#schema-install">Schema Install</a></li>
             <li><a href="#apex-application-install">Apex Application Install</a></li>
             <li><a href="#connecting-to-conductor-for-gluent">Connecting to Conductor for Gluent</a></li>
+        <li class="main "><a href="#appendix-a-xdbconfig_anonymoussql">Appendix A - xdbconfig_anonymous.sql</a></li>
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
@@ -131,7 +133,9 @@ cd c4g-scripts
 tar xf {tar file name}
 </code></pre>
 <h2 id="environment-file-setup">Environment File Setup</h2>
+<blockquote>
 <p><u>Note on split configuration</u>: <i>If gluent is setup in a split configuration, then certain scripts will not function, and certain variables are not set in the environment files.  </i></p>
+</blockquote>
 <h3 id="conductor_for_gluentenv">conductor_for_gluent.env</h3>
 <p>A template for the conductor_for_gluent.env file can be found under the env/templates directory - it is recommended that you copy the template file as a starting point.</p>
 <ul>
@@ -191,12 +195,15 @@ tar xf {tar file name}
 <pre><code>create user conductor_for_gluent identified by "{complex password}" default tablespace users temporary tablespace temp;
 </code></pre>
 <p>The privileges needed are:</p>
-<pre><code>GRANT SELECT ANY DICTIONARY TO CONDUCTOR_FOR_GLUENT;
-GRANT SELECT ANY TABLE TO CONDUCTOR_FOR_GLUENT;
+<pre><code>GRANT CONNECT TO CONDUCTOR_FOR_GLUENT;
 GRANT GLUENT_OFFLOAD_ROLE TO CONDUCTOR_FOR_GLUENT;
-GRANT CONNECT TO CONDUCTOR_FOR_GLUENT;
+GRANT SELECT ANY DICTIONARY TO CONDUCTOR_FOR_GLUENT;
+GRANT SELECT ANY TABLE TO CONDUCTOR_FOR_GLUENT;
+-- Needed for Conductor for Gluent to do partition maintenance
+GRANT DROP ANY TABLE TO CONDUCTOR_FOR_GLUENT;
+GRANT ALTER ANY TABLE TO CONDUCTOR_FOR_GLUENT;
 </code></pre>
-<p>An alternative to the SELECT ANY TABLE privilege is to grant select on the objects to be offloaded.</p>
+<p>An alternative to the <code>ANY TABLE</code> privilege is to preform the grant(s) on the tables to be offloaded.</p>
 <h2 id="tns-setup">TNS Setup</h2>
 <p>This is needed for all 3 modes of the backend software.</p>
 <h3 id="tnsnamesora">TNSNAMES.ORA</h3>
@@ -218,20 +225,24 @@ GRANT CONNECT TO CONDUCTOR_FOR_GLUENT;
 </code></pre>
 <p>For Standalone or Runtime Repository modes, run the following:
     ./setup-wallet new gluent_conn</p>
+<h2 id="crontab-setup">Crontab Setup</h2>
+<p>Once the backend and frontend software are installed, add a cron entry to run the launch script.  The job should be like the following with the appropriate path specified:</p>
+<pre><code> * * * * * /u01/app/gluent/scripts/bin/launch-gluent-jobs &gt; /u01/app/gluent/scripts/log/launch-gluent-jobs-cron.log 2&gt;&amp;1
+</code></pre>
 <h1 id="front-end-installation">Front End Installation</h1>
 <h2 id="prerequisites_1">Prerequisites</h2>
 <p><ul>
 Oracle 12+ Database (created with DBCA or Manually)
 </ul>
 <u>Note</u>: <i>Apex requires that Oracle Text and JVM options be installed.  No other options are required.</i></p>
-<h2 id="apex-182-setup">Apex 18.2 Setup</h2>
+<h2 id="apex-192-setup">Apex 19.2 Setup</h2>
 <p>Create Tablespace for Apex (if one does not exist)</p>
 <pre><code>SQL&gt;  -- Create Tablespace for Apex - Example
 create tablespace tbs_apex datafile '/u01/app/oracle/oradata/testinst/tbs_apex01.dbf' size 100m autoextend on maxsize 1000m;
 </code></pre>
-<h3 id="copy-apex-182-to-database-host">Copy Apex 18.2 to database host</h3>
+<h3 id="copy-apex-192-to-database-host">Copy Apex 19.2 to database host</h3>
 <p>Example Copy to Oracle User Home</p>
-<pre><code>scp apex_18.2_en.zip {oracle user}@{db host}:.
+<pre><code>scp apex_19.2_en.zip {oracle user}@{db host}:.
 </code></pre>
 <h3 id="remove-existing-apex-software">Remove Existing Apex Software</h3>
 <p>Remove Apex from database (if necessary)</p>
@@ -253,18 +264,19 @@ PL/SQL procedure successfully completed.
 ** You must exit this SQL*Plus session before running apexins.sql **
 ********************************************************************
 SQL&gt; exit
-Move original apex software out of the way
-cd $ORACLE_HOME
+</code></pre>
+<p>Move original apex software out of the way</p>
+<pre><code>cd $ORACLE_HOME
 mv apex apex.orig
- 
-Install Apex
-Unzip Apex 18.2 software
-cd $ORACLE_HOME
-example statement if uploaded to user's home directory
-unzip ~/apex_18.2_en.zip
-
-Install Apex 18.2 in database
-cd $ORACLE_HOME/apex
+</code></pre>
+<h3 id="install-apex">Install Apex</h3>
+<h4 id="unzip-apex-192-software">Unzip Apex 19.2 software</h4>
+<p>example statement if uploaded to user's home directory:</p>
+<pre><code>cd $ORACLE_HOME
+unzip ~/apex_19.2_en.zip
+</code></pre>
+<h4 id="install-apex-192-in-database">Install Apex 19.2 in database</h4>
+<pre><code>cd $ORACLE_HOME/apex
 sqlplus / as sysdba
 
 SQL&gt; -- Runtime install with 4 parms (apex tbs, apex tbs, temp tbs, image loc)
@@ -274,9 +286,14 @@ SQL&gt; -- Runtime install with 4 parms (apex tbs, apex tbs, temp tbs, image loc
 PL/SQL procedure successfully completed.
 
 ... ... ... ...
-Thank you for installing Oracle Application Express 18.2.0.00.12
+PL/SQL procedure successfully completed.
 
-Oracle Application Express is installed in the APEX_180200 schema.
+
+
+
+Thank you for installing Oracle Application Express 19.2.0.00.18
+
+Oracle Application Express is installed in the APEX_190200 schema.
 
 The structure of the link to the Application Express administration services is as follows:
 http://host:port/pls/apex/apex_admin (Oracle HTTP Server with mod_plsql)
@@ -288,22 +305,14 @@ http://host:port/pls/apex (Oracle HTTP Server with mod_plsql)
 http://host:port/apex     (Oracle XML DB HTTP listener with the embedded PL/SQL gateway)
 http://host:port/apex     (Oracle REST Data Services)
 
-...revoke development environment privileges from APEX
-
-PL/SQL procedure successfully completed.
-
 timing for: Phase 3 (Switch)
-Elapsed: 00:00:09.05
+Elapsed: 00:00:08.39
 timing for: Complete Installation
-Elapsed: 00:03:08.13
+Elapsed: 00:06:24.88
 
 PL/SQL procedure successfully completed.
-
-1 row selected.
-
-...null1.sql
 </code></pre>
-<h3 id="change-setup-administrator">Change / Setup Administrator</h3>
+<h4 id="change-setup-apex-administrator">Change / Setup Apex Administrator</h4>
 <pre><code>cd $ORACLE_HOME/apex
 sqlplus / as sysdba
 SQL&gt; -- no parameters
@@ -318,7 +327,7 @@ Enter ADMIN's email [ADMIN] {specify email address}
 Enter ADMIN's password [] 
 Created instance administrator ADMIN.
 </code></pre>
-<h3 id="enable-embedded-plsql-gateway-and-other-configuration-items">Enable Embedded PL/SQL Gateway and other configuration items</h3>
+<h4 id="enable-embedded-plsql-gateway-and-other-configuration-items">Enable Embedded PL/SQL Gateway and other configuration items</h4>
 <pre><code>cd $ORACLE_HOME/apex
 sqlplus / as sysdba
 SQL&gt; -- one parameter is oracle_home 
@@ -354,41 +363,64 @@ END;
 <p>or</p>
 <pre><code>create tablespace tbs_c4g datafile '/u01/app/oracle/oradata/testinst/tbs_c4g01.dbf' size 100M autoextend on next 1M maxsize 1000M;
 </code></pre>
-<h3 id="create-user">Create User</h3>
+<h3 id="create-user-and-privileges">Create User and Privileges</h3>
 <p>Create user conductor_for_gluent with above tablespace as the default tablespace, for example:</p>
 <pre><code>create user conductor_for_gluent identified by "{complex password}" 
 default tablespace tbs_c4g;
+alter user conductor_for_gluent quota unlimited on tbs_c4g;
+grant connect to conductor_for_gluent;
+grant resource to conductor_for_gluent;
+grant create database link to conductor_for_gluent;
+grant create synonym to conductor_for_gluent;
+grant create view to conductor_for_gluent;
+grant select any dictionary to conductor_for_gluent;
+grant select any table to conductor_for_gluent;
 </code></pre>
-<h3 id="grant-privileges-and-install-the-objects">Grant Privileges and Install the Objects</h3>
-<p>Change to the directory where you have the install sql and run sqlplus</p>
-<pre><code>sqlplus / as sysdba
-SQL&gt; -- run the sql, no parameters - 1 prompt for tablespace
-@c4g_create_objects.sql
+<h3 id="install-and-setup-the-objects">Install and Setup the Objects</h3>
+<p>The installation SQL scripts are located in <i>gui</i> directory where the backend scripts were installed (usually <code>/u01/app/gluent/scripts</code> or <code>/u01/app/gluent/c4g-scripts</code>.  From this directory connect to the apex database (usually <i>c4g_central</i> is the tns name to use:</p>
+<p>You can set your environment to use the <code>tnsnames.ora</code> file you created during the backend setup. For example:</p>
+<pre><code>cd /u01/app/gluent/c4g-scripts/tns
+export TNS_ADMIN=`pwd`
+cd ../gui
+sqlplus system/{complex password}@c4g_central
+</code></pre>
+<h4 id="schema-setup">Schema Setup</h4>
+<p>Run the sql, no parameters - 1 prompt for tablespace</p>
+<pre><code>spool c4g-setup-schema.log
+@c4g-setup-schema.sql
 Tablespace: tbs_c4g
-20:36:32 SQL&gt;   GRANT UNLIMITED TABLESPACE TO "CONDUCTOR_FOR_GLUENT";
-...
-1 row created.
-
-Elapsed: 00:00:00.00
-20:36:35 SQL&gt; SET DEFINE ON;
-20:36:35 SQL&gt; set echo off
-20:36:35 SQL&gt; -- commit the inserts
+spool off
+</code></pre>
+<h4 id="source-setup">Source Setup</h4>
+<p>Run the sql, no parameters</p>
+<pre><code>spool c4g-setup-source.log
+@c4g-setup-source.sql
+spool off
+</code></pre>
+<h4 id="seed-data-setup">Seed Data Setup</h4>
+<p>Run the sql, no parameters</p>
+<pre><code>spool c4g-setup-seeddata.log
+@c4g-setup-seeddata.sql
 commit;
-
-Commit complete.
-
-Elapsed: 00:00:00.01
-20:36:38 SQL&gt; exit
+spool off
+</code></pre>
+<p><u>Note</u>: <i> Be sure to commit after running the script.  </i></p>
+<h4 id="help-text-setup">Help Text Setup</h4>
+<p>Run the sql, no parameters</p>
+<pre><code>spool c4g-setup-helptext.log
+@c4g-setup-helptext.sql
+commit;
+spool off
 </code></pre>
 <p><u>Note</u>: <i> Be sure to commit after running the script.  </i></p>
 <h2 id="apex-application-install">Apex Application Install</h2>
 <h3 id="create-the-workspace">Create the Workspace</h3>
 <pre><code>SQL&gt; -- run the sql, no parameters
-@c4g_apex_install_workspace.sql
+@c4g-apex-workspace.sql
 </code></pre>
 <h3 id="import-the-runtime-app-sql-script">"Import" the runtime app (sql script)</h3>
 <pre><code>SQL&gt; -- run the sql, no parameters
-@c4g_apex_install_runtime_app.sql
+@c4g-apex-application.sql
 </code></pre>
 <h2 id="connecting-to-conductor-for-gluent">Connecting to Conductor for Gluent</h2>
 <pre><code>http://{hostname}:8080/apex/f?p=100:LOGIN_DESKTOP:25119307751525:::::
@@ -397,7 +429,60 @@ Elapsed: 00:00:00.01
 Admin User: c4g_admin
 App User: c4g_user</p>
 <p>Please contact your Conductor for Gluent provider for password.
- </p></div>
+ </p>
+<h1 id="appendix-a-xdbconfig_anonymoussql">Appendix A - xdbconfig_anonymous.sql</h1>
+<pre><code>DECLARE
+  l_configxml XMLTYPE;
+  l_value VARCHAR2(5) := 'true';
+BEGIN
+  l_configxml := DBMS_XDB.cfg_get();
+  IF l_configxml.existsNode('/xdbconfig/sysconfig/protocolconfig/httpconfig/allow-repository-anonymous-access') = 0 THEN
+    -- Add config element
+    begin
+      SELECT
+        insertChildXML(
+          l_configxml
+          , '/xdbconfig/sysconfig/protocolconfig/httpconfig'
+          , 'allow-repository-anonymous-access'
+          , XMLType('&lt;allow-repository-anonymous-access xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd"&gt;'
+              || l_value
+              || '&lt;/allow-repository-anonymous-access&gt;')
+          , 'xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd"'
+        )
+        INTO l_configxml
+        FROM dual;
+      exception
+        when others then
+          dbms_output.put_line( 'insert' ); -- '
+          raise;
+    end;
+    DBMS_OUTPUT.put_line('xdbconfig for anonymous now inserted.');
+  ELSE
+    -- Update existing config element.
+    begin
+      SELECT
+        updateXML(
+          DBMS_XDB.cfg_get()
+          , '/xdbconfig/sysconfig/protocolconfig/httpconfig/allow-repository-anonymous-access/text()'
+          , XMLType('&lt;allow-repository-anonymous-access xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd"&gt;'
+              || l_value
+              || '&lt;/allow-repository-anonymous-access&gt;')
+          , 'xmlns="http://xmlns.oracle.com/xdb/xdbconfig.xsd"'
+        )
+          INTO l_configxml
+          FROM dual;
+      exception
+        when others then
+          dbms_output.put_line( 'update'); -- '
+          raise;
+    end;
+    DBMS_OUTPUT.put_line('xdbconfig for anonymous now updated.');
+  END IF;
+  DBMS_XDB.cfg_update(l_configxml);
+  DBMS_XDB.cfg_refresh;
+END;
+/
+</code></pre></div>
         </div>
 
         <footer class="col-md-12">
