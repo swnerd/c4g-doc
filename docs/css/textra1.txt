@@ -1,0 +1,46 @@
+.navbar-dark {
+  background-color:#337764;border-color:006655;
+}
+.navbar-default {
+  background-color:#337764;border-color:006655;
+}
+.navbar-default .navbar-brand{
+  color:#eeeeee;
+}
+.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{
+  color:#ffffff;background-color:transparent
+}
+.navbar-default .navbar-nav .open .dropdown-menu>li>a{
+color:#eeeeee
+}
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover{
+color:#ffffff;background-color:transparent
+}
+.navbar-default .navbar-nav .open .dropdown-menu>.active>a,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover{
+color:#555;background-color:#e7e7e7
+}
+.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus,.navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover{
+color:#ccc;background-color:transparent
+}
+
+}
+.navbar-default .navbar-link{
+color:#eeeeee
+}
+.navbar-default .navbar-link:hover{
+color:#ffffff
+}
+.navbar-default .btn-link{
+color:#eeeeee
+}
+.navbar-default .btn-link:focus,.navbar-default .btn-link:hover{
+color:#ffffff
+}
+.navbar-default .btn-link[disabled]:focus,.navbar-default .btn-link[disabled]:hover,fieldset[disabled] .navbar-default .btn-link:focus,fieldset[disabled] .navbar-default .btn-link:hover{
+color:#ccc
+}
+
+
+.bs-sidebar {
+  background-color:#dcf1ed
+}
