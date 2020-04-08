@@ -1,5 +1,9 @@
 title: Release Notes
 
+# 2.2.1
+
+- Renamed table and associated objects to get the length of them to fit in 30 characters.
+
 # 2.2.0
 
 - Ability to add a new table adhawk rather than uploading an advisor report
