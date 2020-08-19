@@ -9,8 +9,9 @@ Enter the Conductor for Gluent Apex URL into your browser. The URL will be somet
 
 	http://{hostname}:{port}/apex/f?p=100
 
-<img src="img/s-00-a-login.png" alt="Login Screen" style="width:800px;height:475px;"><p>
+<img src="img/s-00-a-login.png" alt="Login Screen" style="width:400px;height:375px;"><p>
 Once the Conductor for Gluent login form is available, then enter your username and password for Conductor for Gluent.
+
 
 # Site
 
@@ -140,36 +141,63 @@ Notifications can be enabled and disabled.
 
 ## Candidate Selection Wizard
 <img src="img/s-18-1-candidateselection.png" alt="Candidate Selection Wizard Step 1 Screen" style="width:800px;height:475px;"><p>
-<u>Step 1 – Select an Advisor Output File</u><p>
+<p style="padding: 0 0 30px 0;">
+<u>Step 1 – Select an Advisor Output File</u>: 
 Select a file or if this is your second time through, you can use the existing file. Multiple files can be uploaded if a new advisor report CSV is obtained. Press Next to continue.
+</p>
 
 <img src="img/s-18-2-candidateselection.png" alt="Candidate Selection Wizard Step 2 Screen" style="width:800px;height:475px;"><p>
-<u>Step 2 – Select Tables</u><p>
+<p style="padding: 0 0 30px 0;">
+<u>Step 2 – Select Tables</u>: 
 Select one or more tables that you want to offload. Press Next to continue.
+</p>
 
 <img src="img/s-18-3-candidateselection.png" alt="Candidate Selection Wizard Step 3 Screen" style="width:800px;height:475px;"><p>
-<u>Step 3 – Table Thresholds</u><p>
+<p style="padding: 0 0 30px 0;">
+<u>Step 3 – Table Thresholds</u>: 
 The default offload threshold will be determined from the Advisor report. The drop threshold default will be calculated using the application parameter OFFLOAD_DROP_RATIO * offload threshold. Either threshold may be updated if desired. Press Next to continue.
+</p>
 
 <img src="img/s-18-4-candidateselection.png" alt="Candidate Selection Wizard Step 4 Screen" style="width:800px;height:475px;"><p>
-<u>Step 4 – Partition Details</u><p>
+<u>Step 4 – Partition Details</u>: 
 If a database link is in use, then the partition details will be automatically loaded from the database into the repository. If no connection is available, the partition details will need to be entered manually. Additionally, a column mask can be selected for numbers or strings that represent dates. Press Finish to complete the wizard.
 
 ## Table Review
 <img src="img/s-17-a-tablereview.png" alt="Table Review Screen" style="width:800px;height:475px;"><p>
-The table review screen allows you to view information about the tables that have been selected to offload. 
+The table review screen allows you to add a new table and view information about the tables that have been selected to offload. The following details about tables are available:
 
 For all tables, you can:
 
-- Update table level offload parameters
+- View and Update table level offload parameters
 - Review the Oracle Offload Datasets
 - Review the Hadoop Offload Datasets
 
 Additionally, for partitioned tables, you can:
 
-- update the partition details
-- update the offload threshold
-- update the drop threshold
+- View and pdate the partition details
+- View and update the offload and drop threshold, as well as, the offload drop action.
+
+### Add Table Wizard
+To add a new table, click the Add Table Wizard button.
+
+<img src="img/s-17-b-addtable1.png" alt="Add Table Wizard Screen 1" style="width:350px;height:300;"><p>
+When a database link is allowed, the first screen of the Add Table Wizard will have select lists for the schemas and table names. When next is hit, the partitioning information will be automatically gathered. 
+
+<p style="padding: 0 0 30px 0;">
+When no connection is allowed, you will need to manually enter the correct schema, table_name and partitioning type. 
+</p>
+
+<img src="img/s-17-c-addtable2.png" alt="Add Table Wizard Screen 2" style="width:350px;height:300;"><p>
+The second screen of the Add Table Wizard will be used to specify the Offload and Drop Thresholds for partition tables.
+
+<p style="padding: 0 0 30px 0;">
+No information is entered for non-partitioned tables.
+</p>
+
+<img src="img/s-17-d-addtable3.png" alt="Add Table Wizard Screen 3" style="width:350px;height:300;"><p>
+The third screen of the Add Table Wizard is used to specify the partition keys when no connection is allowed. Plus, date masking can be specified for cases where a string or number is used to represent a date.
+
+No information is entered for non-partitioned tables.
 
 # Jobs
 
@@ -177,16 +205,52 @@ Additionally, for partitioned tables, you can:
 <img src="img/s-19-a-jobshome.png" alt="Jobs Home Screen" style="width:800px;height:475px;"><p>
 The main screen for job maintenance contains cards, each with a job on it. Jobs can be selected by clicking on the card. Clicking on the current card allows the editing of details about the job. The job steps are editable in this screen. The Job Add Wizard and calendar view are available by pressing the corresponding buttons.
 
+### Jobs - Duplicate Table Job Configuration
+When there are duplicate copies of tables that need to be offloaded in multiple schemas. An example of this would be if a company had a schema per client with the same tables under each schema. 
+
+A Duplicate Table Job is added through the <i>Add Job Wizard</i>, however, only step 1 is entered. After completing step 1, you will be taken back to the main job maintenance screen. Once you select the job, you can start adding elements to the configuration. The different types of elements in a configuration are:
+
+<ol>
+<li>Duplicate</li>
+<ul>
+<li>Enter duplicate table details.</li><li>Only a table name is specified (no schema/owner), as there are multiple duplicate tables across the database</li><li> The duplicate element will look for the specified table name across all schemas in the database.</li>
+</ul>
+<li>Include</li>
+<ul>
+<li>Enter the details for a specific table that should be included in the job.</li><li>Enter a full table name with owner/schema and table names specified.</li>
+</ul>
+<li>Exclude</li>
+<ul>
+<li>Enter the details for a specific table that should be excluded in the job.</li><li>Enter a full table name with owner/schema and table names specified.</li>
+</ul>
+</ol>
+
+<u>Example</u><p>
+A call center company has one schema for each client that they service through their call center. Under each of those client schemas, they have a CALL_DETAILS table which needs to be offload. In addition, they have a training schema, which has a CALL_DETAILS table that should not be offloaded. The configuration elements for this scenario are:
+
+<ul>
+<li>Duplicate, CALL_DETAILS</li>
+<li>Exclude, TRAINING.CALL_DETAILS</li>
+</ul>
+
+<p style="padding: 0 0 30px 0;">
+This will result in a job being geneated based on the frequency desired that will have all of the CALL_DETAILS tables except the one from the TRAINING schema. 
+</p>
+
 ## Add Job Wizard
 <img src="img/s-19-c-jobwizard1.png" alt="Jobs Wizard Step 1 Screen" style="width:800px;height:475px;"><p>
 <u>Step 1: Job Name and Type</u>
 The job name can be any alpha-numeric characters. The job description is a free form field. The job type is going to be Normal most of the time. Press Next to continue.
 
-Note: A rare case calls for a Generate job type, when there are duplicate copies of tables that need to be offloaded in multiple schemas. An example of this would be if a company had a schema per client with the same tables under each schema. A Generate job does not have defined steps. This job type will be covered in a separate section.
+<p style="padding: 0 0 30px 0;">
+Note: A rare case calls for a Duplicate Table job type, when there are duplicate copies of tables that need to be offloaded in multiple schemas. An example of this would be if a company had a schema per client with the same tables under each schema. A Duplicate Table job does not have defined steps. This job type will be covered in a separate section.
+</p>
 
 <img src="img/s-19-d-jobwizard2.png" alt="Jobs Wizard Step 2 Screen" style="width:800px;height:475px;"><p>
 <u>Step 2: Job Steps</u>
+<p style="padding: 0 0 30px 0;">
 Select the step type. Then select the table for the step. Select if the step is enabled or disabled. All steps also have a step comment. Other fields will depend on the step type. Press Next to continue.
+</p>
 
 <img src="img/s-19-e-jobwizard3.png" alt="Jobs Wizard Step 3 Screen" style="width:800px;height:475px;"><p>
 <u>Step 3: Job Schedule</u>

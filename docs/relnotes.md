@@ -1,5 +1,25 @@
 title: Release Notes
 
+# 2.2.5
+
+- Corrected command parameters, so they take into account gluent version at DB, Table and Job Step levels
+- Add feature to limit cmd parameters that show at Site and DB levels that do not make sense (e.g. ones that specify columns)
+- Command parameters are available for Gluent versions 2.11 - 3.4
+- launch-guent-job updated so it will only attempt to launch jobs for it's database install
+- Continued improvement the processing when recording information about Oracle and Hadoop Datasets
+- Improved debug mode and logging
+
+
+# 2.2.3
+
+- Incremental improvment in the processing details about Oracle Datasets
+
+# 2.2.2
+
+- Lengthen columns from 30 to 128 for long naming support
+- Correct issue in calendar
+- GUI improvements
+
 # 2.2.1
 
 - Renamed table and associated objects to get the length of them to fit in 30 characters.
