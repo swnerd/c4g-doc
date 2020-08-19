@@ -7,7 +7,7 @@ title: Release Notes
 - Command parameters are available for Gluent versions 2.11 - 3.4
 - launch-guent-job updated so it will only attempt to launch jobs for it's database install
 - Continued improvement the processing when recording information about Oracle and Hadoop Datasets
-- Improved debug mode and logging
+- Improvements to debug mode and logging
 
 
 # 2.2.3
