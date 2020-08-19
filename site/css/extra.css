@@ -1,0 +1,30 @@
+.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{
+color:#ffffff;background-color:#337764
+}
+.navbar-default{
+background-color:#337764; border-color:#e7e7e7
+}
+.navbar-default .navbar-brand{
+color:#eee
+}
+.navbar-default .navbar-text{
+color:#eee
+}
+.navbar-default .navbar-nav>li>a{
+color:#eee
+}
+
+
+
+.nav .bs-sidebar {
+  color:#dcf1ed
+}
+
+
+.h1,h1{
+margin-top:60px;margin-bottom:10px
+}
+
+.h2,h2{
+margin-top:40px;margin-bottom:10px
+}
