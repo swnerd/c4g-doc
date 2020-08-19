@@ -1,4 +1,4 @@
-title: User's Guide
+title: User Guide
 
 # Introduction
 
