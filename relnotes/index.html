@@ -85,7 +85,10 @@
         <div class="container">
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#225">2.2.5</a></li>
+        <li class="main active"><a href="#227">2.2.7</a></li>
+            <li><a href="#upgrade-instructions">Upgrade Instructions:</a></li>
+        <li class="main "><a href="#226">2.2.6</a></li>
+        <li class="main "><a href="#225">2.2.5</a></li>
         <li class="main "><a href="#223">2.2.3</a></li>
         <li class="main "><a href="#222">2.2.2</a></li>
         <li class="main "><a href="#221">2.2.1</a></li>
@@ -96,6 +99,28 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
+<h1 id="227">2.2.7</h1>
+<ul>
+<li>Changed DB Details Apex screen to handle loopback connection for DB LINK</li>
+<li>Changed Incremental Update Flag from a selection dropdown to an autocomplete text field</li>
+<li>Fixed issue with database level parameters not being included in offload/present commands</li>
+<li>Reduced length of variable name to less than 30 characters</li>
+<li>Corrected issue with job not exiting on error in certain cases</li>
+</ul>
+<h2 id="upgrade-instructions">Upgrade Instructions:</h2>
+<ul>
+<li>cd {C4G INSTALLATION LOCATION}</li>
+<li>tar -xf conductor_for_gluent-upgrade-2.2.7.tar.bz2</li>
+<li>sqlplus conductor_for_gluent/{password}@{C4G REPOSITORY SERVICE NAME}</li>
+<li>@gui/c4g-apex-application.sql</li>
+<li>@gui/c4g-setup-source.sql</li>
+</ul>
+<hr />
+<h1 id="226">2.2.6</h1>
+<ul>
+<li>Add license/copyright info</li>
+</ul>
+<hr />
 <h1 id="225">2.2.5</h1>
 <ul>
 <li>Corrected command parameters, so they take into account gluent version at DB, Table and Job Step levels</li>
