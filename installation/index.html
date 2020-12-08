@@ -206,6 +206,7 @@ Enter ADMIN's password []
 Created instance administrator ADMIN.
 </code></pre>
 <h4 id="enable-embedded-plsql-gateway-and-other-configuration-items">Enable Embedded PL/SQL Gateway and other configuration items</h4>
+<h4 id="enable-embedded-plsql-gateway-and-other-configuration-items_1">Enable Embedded PL/SQL Gateway and other configuration items</h4>
 <pre><code>cd $ORACLE_HOME/apex
 sqlplus / as sysdba
 SQL&gt; -- one parameter is oracle_home 
@@ -217,8 +218,10 @@ PL/SQL procedure successfully completed.
 
 Commit complete.
 
-alter user anonymous identified by {complex password} account unlock;
-alter user xdb identified by {complex password} account unlock;
+alter user anonymous identified by "{complex password}" account unlock;
+alter user xdb identified by "{complex password}" account unlock; 
+alter user apex_public_user identified by "{complex password}" account unlock;
+
 
 EXEC DBMS_XDB.SETHTTPPORT(8080);
 
@@ -433,7 +436,7 @@ GRANT ALTER ANY TABLE TO CONDUCTOR_FOR_GLUENT;
     ./setup-wallet new gluent_conn</p>
 <h2 id="crontab-setup">Crontab Setup</h2>
 <p>Once the backend and frontend software are installed, add a cron entry to run the launch script.  The job should be like the following with the appropriate path specified:</p>
-<pre><code> * * * * * /u01/app/gluent/scripts/bin/launch-gluent-jobs &gt; /u01/app/gluent/scripts/log/launch-gluent-jobs-cron.log 2&gt;&amp;1
+<pre><code> * * * * * /u01/app/gluent/scripts/bin/launch-gluent-jobs {DB/Container Name} &gt; /u01/app/gluent/scripts/log/launch-gluent-jobs-cron.log 2&gt;&amp;1
 </code></pre>
 <h1 id="appendix-a-xdbconfig_anonymoussql">Appendix A - xdbconfig_anonymous.sql</h1>
 <pre><code>DECLARE
