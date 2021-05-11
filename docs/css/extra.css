@@ -28,3 +28,24 @@ margin-top:60px;margin-bottom:10px
 .h2,h2{
 margin-top:40px;margin-bottom:10px
 }
+
+.bs-sidebar .nav {
+  text-indent: 10px;
+}
+
+.bs-sidebar .nav > .main {
+  text-indent: -10px;
+}
+
+.bs-sidebar .nav > li > a:hover,
+.bs-sidebar .nav > li > a:focus {
+    text-decoration: none;
+    border: 1px solid;
+}
+
+.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a {
+    font-weight: bold;
+    color:#ffffff;
+    background-color:#337764;
+    border: 1px solid;
+}
