@@ -1,23 +1,25 @@
-.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{
-color:#ffffff;background-color:#337764
+.bg-primary {
+  background-image: none;
+  background-color:#337764 !important;
+  color:#eeeeee;
+  border-color:#e7e7e7;
 }
-.navbar-default{
-background-color:#337764; border-color:#e7e7e7
-}
-.navbar-default .navbar-brand{
+.navbar .navbar-brand{
 color:#eee
 }
-.navbar-default .navbar-text{
+.navbar .navbar-text{
 color:#eee
 }
-.navbar-default .navbar-nav>li>a{
+.navbar .navbar-nav>li>a{
 color:#eee
+}
+.navbar .navbar-nav>li>a:hover, .navbar .navbar-nav>li>a:active {
+color:#337764
 }
 
 
-
-.nav .bs-sidebar {
-  color:#dcf1ed
+.html {
+  font-family: Helvetica, sans-serif;
 }
 
 
@@ -29,21 +31,33 @@ margin-top:60px;margin-bottom:10px
 margin-top:40px;margin-bottom:10px
 }
 
-.bs-sidebar .nav {
+.h3,h3{
+margin-top:20px;margin-bottom:10px
+}
+
+.h4,h4{
+margin-top:20px;margin-bottom:10px
+}
+
+ul ul, ol ul {
   text-indent: 10px;
 }
 
-.bs-sidebar .nav > .main {
-  text-indent: -10px;
+.bs-sidebar {
+  font-size: small;
+  line-height: 1.1;
 }
 
-.bs-sidebar .nav > li > a:hover,
-.bs-sidebar .nav > li > a:focus {
+.nav>li>a:hover, .nav>li>a:active {
     text-decoration: none;
     border: 1px solid;
 }
 
-.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a {
+.bs-sidebar .nav > li > a.nav-link {
+  color:#337764
+}
+
+.bs-sidebar .nav > li > a.nav-link.active {
     font-weight: bold;
     color:#ffffff;
     background-color:#337764;

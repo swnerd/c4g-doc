@@ -36,8 +36,8 @@ From the site home:
 <li>Amount of Space that hasn't been selected from the Gluent Advisor Report</li>
 </ul>
 <li>Add a New Database - Click on the <i>Add New</i> card from the list.</li>
-<li>Select a Database to Manage - Click on one of the database cards, to manage it's jobs and tables.</li>
-<li>Edit the details of a database - Click on the <i>Edit</i> Link of a database to change it's description, icon color, database link information, etc.</li>
+<li>Select a Database to Manage - Click on one of the database cards, to manage its jobs and tables.</li>
+<li>Edit the details of a database - Click on the <i>Edit</i> Link of a database to change its description, icon color, database link information, etc.</li>
 </ol>
 
 ## Site Level Offload Parameters

@@ -1,6 +1,6 @@
 title: Installation
 
-# Front End Installation
+# Front-end Installation
 
 The frontend installation should be done anytime the central Conductor for Gluent repository will be used along with the Conductor for Gluent Apex application. If using the Conductor for Gluent in the standalone mode, please skip down to the backend installation section.
 
@@ -12,7 +12,7 @@ The frontend installation should be done anytime the central Conductor for Gluen
 </ul>
 <u>Note 1: </u>: <i>Apex requires that Oracle Text and JVM options be installed.  No other options are required.</i>
 
-<u>Note 2: </u>: <i>Apex and Conductor for Gluent should be installed into the container database, so be sure to run the alter session command to set the container, e.g. ALTER SESSION SET CONTAINER = XEPDB1. </i>
+<u>Note 2: </u>: <i>Apex and Conductor for Gluent should be installed into the container database, so be sure to run the alter session command to set the container, e.g., ALTER SESSION SET CONTAINER = XEPDB1. </i>
 
 
 ## Apex 20.2 Setup
@@ -140,7 +140,7 @@ example statement if uploaded to user's home directory:
     unzip ~/ords-20.4.1.013.1644.zip
     cp -r $ORACLE_HOME/apex/images $ORACLE_HOME/apex-ords/.
 
-Sample Installation;
+Sample Installation:
 
     java -jar ords.war install advanced
     Specify the database connection type to use.
@@ -291,7 +291,7 @@ App User: c4g_user
 Please contact your Conductor for Gluent provider for password.
  
 
-# Backend Software Installations
+# Back-end Installation
 
 ## Conductor for Gluent Backend Software Usage Options
 The Conductor for Gluent Backend (evolved from AEG Gluent Toolkit) has three possible modes of operation:
@@ -399,7 +399,7 @@ The privileges needed are:
     GRANT DROP ANY TABLE TO CONDUCTOR_FOR_GLUENT;
     GRANT ALTER ANY TABLE TO CONDUCTOR_FOR_GLUENT;
 
-An alternative to the `ANY TABLE` privilege is to preform the grant(s) on the tables to be offloaded.
+An alternative to the `ANY TABLE` privilege is to perform the grant(s) on the tables to be offloaded.
 
 ## TNS Setup
 This is needed for all 3 modes of the backend software.

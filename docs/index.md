@@ -2,7 +2,7 @@
 # Overview
 Conductor for Gluent makes managing offloads with Gluent Data Platform easier. The orchestration of tasks such as offload execution, monitoring and partition dropping can be done through a single UI.
 
-Conductor provides global-, database- and job-level parameters for job execution, notifications and partition removal. This drives consistency in the operation of Gluent software across the environment.
+Conductor provides global-, database- and job-level parameters for job execution, notifications, and partition removal. This drives consistency in the operation of Gluent software across the environment.
 
 
 # Setting Up

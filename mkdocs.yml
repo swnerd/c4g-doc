@@ -2,11 +2,20 @@ site_name: Conductor for Gluent Documentation
 site_author: Paul Elbow
 site_description: "Documentation for Conductor for Gluent"
 copyright: "© Copyright 2020-2021, Paul Elbow"
+
 theme:
-    name: bootstrap
+    name: mkdocs
+    sticky_navigation: True
+    collapse_navigation: False
+    nav_style: primary
+    navigation_depth: 2
+
+# theme:
+#     name: bootstrap
+
 extra_css:
     - css/extra.css
 
-repo_url: https://github.com/swnerd/c4g-doc
-repo_name: "GitHub"
+# repo_url: https://github.com/swnerd/c4g-doc
+# repo_name: "GitHub"
 

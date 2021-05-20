@@ -120,7 +120,7 @@ title: Release Notes
 - Corrected command parameters, so they take into account gluent version at DB, Table and Job Step levels
 - Add feature to limit cmd parameters that show at Site and DB levels that do not make sense (e.g. ones that specify columns)
 - Command parameters are available for Gluent versions 2.11 - 3.4
-- launch-guent-job updated so it will only attempt to launch jobs for it's database install
+- launch-guent-job updated so it will only attempt to launch jobs for its database install
 - Continued improvement the processing when recording information about Oracle and Hadoop Datasets
 - Improvements to debug mode and logging
 
