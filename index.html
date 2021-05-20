@@ -9,97 +9,81 @@
         
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>Conductor for Gluent Documentation</title>
-    <link href="css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-    <link href="css/extra.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <link href="css/extra.css" rel="stylesheet">
 
-    <script src="js/jquery-1.10.2.min.js" defer></script>
-    <script src="js/bootstrap-3.3.7.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script> 
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
     <body class="homepage">
-
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href=".">Conductor for Gluent Documentation</a>
-                </div>
+                <a class="navbar-brand" href=".">Conductor for Gluent Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
+                <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a href=".">Home</a>
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">2.2.x <b class="caret"></b></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">2.2.x <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
-<li >
-    <a href="2.2.x/install-2.2.x/">Installation</a>
+<li>
+    <a href="2.2.x/install-2.2.x/" class="dropdown-item">Installation</a>
 </li>
                                     
-<li >
-    <a href="2.2.x/relnotes/">Release Notes</a>
+<li>
+    <a href="2.2.x/relnotes/" class="dropdown-item">Release Notes</a>
 </li>
                                     
-<li >
-    <a href="2.2.x/user-guide-2.2.x/">User Guide</a>
+<li>
+    <a href="2.2.x/user-guide-2.2.x/" class="dropdown-item">User Guide</a>
 </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">3.0.x <b class="caret"></b></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">3.0.x <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     
-<li >
-    <a href="3.0.x/install-3.0.x/">Installation</a>
+<li>
+    <a href="3.0.x/install-3.0.x/" class="dropdown-item">Installation</a>
 </li>
                                     
-<li >
-    <a href="3.0.x/user-guide-3.0.x/">User Guide</a>
+<li>
+    <a href="3.0.x/user-guide-3.0.x/" class="dropdown-item">User Guide</a>
 </li>
                                 </ul>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
-                            <li class="disabled">
-                                <a rel="next" >
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
-                            <li >
-                                <a rel="prev" href="2.2.x/install-2.2.x/">
+                            <li class="nav-item">
+                                <a rel="next" href="2.2.x/install-2.2.x/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/swnerd/c4g-doc/edit/master/docs/index.md"><i class="fa fa-github"></i> Edit on GitHub</a>
                             </li>
                     </ul>
                 </div>
@@ -107,20 +91,46 @@
         </div>
 
         <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#overview">Overview</a></li>
-        <li class="main "><a href="#setting-up">Setting Up</a></li>
-        <li class="main "><a href="#managing">Managing</a></li>
-        <li class="main "><a href="#statistics">Statistics</a></li>
-    </ul>
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#overview" class="nav-link">Overview</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#setting-up" class="nav-link">Setting Up</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#managing" class="nav-link">Managing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#statistics" class="nav-link">Statistics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
 </div></div>
-                <div class="col-md-9" role="main">
+                    <div class="col-md-9" role="main">
 
 <p><img src="img/conductor-m-512.jpg" alt="Conductor for Gluent"></p>
 <h1 id="overview">Overview</h1>
 <p>Conductor for Gluent makes managing offloads with Gluent Data Platform easier. The orchestration of tasks such as offload execution, monitoring and partition dropping can be done through a single UI.</p>
-<p>Conductor provides global-, database- and job-level parameters for job execution, notifications and partition removal. This drives consistency in the operation of Gluent software across the environment.</p>
+<p>Conductor provides global-, database- and job-level parameters for job execution, notifications, and partition removal. This drives consistency in the operation of Gluent software across the environment.</p>
 <h1 id="setting-up">Setting Up</h1>
 <p>Conductor for Gluent integrates Gluent Advisor findings with existing database information to make offloading candidate tables simple and stress-free. Once defined, jobs can be scheduled to execute offload commands and drop offloaded partitions if desired.</p>
 <h1 id="managing">Managing</h1>
@@ -128,6 +138,7 @@
 <p>Conductor provides a simple way to create and manage jobs via a wizard. Managing existing jobs (removing, changing, deactivating, etc.) is driven solely through the UI.</p>
 <h1 id="statistics">Statistics</h1>
 <p>One of the primary use cases for Gluent Data Platform is offloading data to a cheaper, more modern data platform. Conductor for Gluent captures how much space is offloaded and presents it in a simple, visual display. Centralized reporting on space savings makes tracking this KPI easy.</p></div>
+            </div>
         </div>
 
         <footer class="col-md-12">
@@ -137,26 +148,26 @@
         </footer>
         <script>
             var base_url = ".",
-                shortcuts = {"search": 83, "next": 78, "help": 191, "previous": 80};
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
         <script src="js/base.js" defer></script>
         <script src="search/main.js" defer></script>
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
             </div>
             <div class="modal-body">
                 <p>
                     From here you can search these documents. Enter
                     your search terms below.
                 </p>
-                <form role="form">
+                <form>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
                 <div id="mkdocs-search-results"></div>
@@ -165,12 +176,12 @@
             </div>
         </div>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -210,6 +221,6 @@
 </html>
 
 <!--
-MkDocs version : 1.0.4
-Build Date UTC : 2021-05-11 02:51:13
+MkDocs version : 1.1.2
+Build Date UTC : 2021-05-20 15:03:21.999853+00:00
 -->
